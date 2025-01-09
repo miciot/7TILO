@@ -28,16 +28,20 @@ State: 0
 δ(0, #, #) = (0, #, #, RIGHT, RIGHT) // transition function
 -----------------------------------
 Output:
-Output:
 ########10000##
-Binary code of machine
-Begin 111
-End 111
-Separator 11
-Transition inner separator 1
-Transition
-δ(0, 0, #) = (1, 0, #, RIGHT, RIGHT)
 ```
+### Binary code of machine:
+
+Begin: 111
+
+End: 111
+
+Separator: 11
+
+Inner separator: 1
+
+Transition:
+δ(0, 0, #) = (1, 0, #, RIGHT, RIGHT)
 
 current state = 0 -> 0
 
