@@ -5,7 +5,7 @@ Turing machine with 2 tapes (input and output) for sum of binary numbers
 Lectures materials, Python Docs, ...
 
 ## Transitions
-img.png
+![alt text](img.png "Transitions")
 
 ## Getting Started
 Just run python sum_of_all_numbers.py ##<number1>#<number2>#...## from command line.
