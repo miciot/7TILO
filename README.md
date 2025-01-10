@@ -8,7 +8,7 @@ Lectures materials, Python Docs, ...
 ![alt text](img.png "Transitions")
 
 ## Getting Started
-Just run python sum_of_all_numbers.py ##<number1>#<number2>#...## from command line.
+Just run ```python sum_of_all_numbers.py ##<number1>#<number2>#...##``` from command line.
 
 ## Example
 python sum_of_all_numbers.py ##101#1001#10##
