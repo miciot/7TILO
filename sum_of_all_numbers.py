@@ -172,7 +172,6 @@ class TestConfig(TuringMachineConfig):
 if __name__ == "__main__":
     os.system("cls")
     os.system("")
-    print(sys.argv)
     if sys.argv[1] == "":
         pass
 

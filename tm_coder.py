@@ -62,35 +62,41 @@ class TuringMachineCoder:
         pass
 
     def encode_states(self) -> str:
-        ret = self.__get_value(len(self._states))
+        ret = self.__get_value(cnt=len(self._states), skip_separator=True)
         ret += self._separator
-        ret += self.__get_value(self._states.get_starting())
+        ret += self.__get_value(self._states.get_starting() + 1)
         ret += self._transition_separator
-        for state_id in self._states.get_ending():
-            ret += self.__get_value(state_id)
+        endings = self._states.get_ending()
+        for idx, state_id in enumerate(endings):
+            ret += self.__get_value(state_id + 1, idx == (endings.__len__() - 1))
         return ret
 
     def encode_alphabet(self) -> str:
-        return self.__get_value(len(self._alphabet))
+        return self.__get_value(cnt=len(self._alphabet), skip_separator=True)
 
     def encode_transitions(self) -> str:
         ret = ""
-        for transition_key in self._transitions.keys():
+        keys = self._transitions.keys()
+        for idx, transition_key in enumerate(keys):
             transition = self._transitions.get_transition(transition_key)
             ret += self.encode_transition(transition)
+            if idx != keys.__len__() - 1:
+                ret += self._transition_separator
+            else:
+                a = "a"
         return ret
 
     def encode_transition(self, transition: Transition) -> str:
         ret = ""
-        ret += self.__get_value(transition.current_state + 1)
+        ret += self.__get_value(cnt=transition.current_state + 1)
 
         for value in transition.current_values:
-            ret += self.__get_value(self._alphabet.index(value) + 1)
+            ret += self.__get_value(cnt=self._alphabet.index(value) + 1)
 
-        ret += self.__get_value(transition.new_state + 1)
+        ret += self.__get_value(cnt=transition.new_state + 1)
 
         for value in transition.new_values:
-            ret += self.__get_value(self._alphabet.index(value) + 1)
+            ret += self.__get_value(cnt=self._alphabet.index(value) + 1)
 
         for idx, movement in enumerate(transition.movements):
             if movement == Movement.LEFT:
@@ -101,7 +107,6 @@ class TuringMachineCoder:
                 i = 3
             ret += self.__get_value(i, idx == (transition.movements.__len__() - 1))
 
-        ret += self._separator
         return ret
 
     def __get_value(self, cnt: int, skip_separator: bool = False) -> str:
